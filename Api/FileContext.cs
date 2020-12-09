@@ -27,7 +27,7 @@ namespace Api
         {
             // Read file
 
-            using (var fileStream = new FileStream(path, FileMode.Open))
+            using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 using (var streamReader = new StreamReader(fileStream))
                 {
