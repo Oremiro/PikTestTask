@@ -27,7 +27,7 @@ namespace Api.Tests
 
             Assert.True(fileContext.Users[0].Id == 1 &&
                         fileContext.Users[0].Username == "user" &&
-                        fileContext.Users[1].PasswordHash ==
+                        fileContext.Users[0].PasswordHash ==
                         "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8");
         }
     }
