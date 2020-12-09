@@ -61,15 +61,21 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\users.tsv" />
     <Content Include="Dockerfile" />
     <Content Include="Service1.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="EntityServices\AuthService.cs" />
+    <Compile Include="FileContext.cs" />
+    <Compile Include="Helpers\AuthHelper.cs" />
+    <Compile Include="Initializer.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
+    <Compile Include="IAuthRequestService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

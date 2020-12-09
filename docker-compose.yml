@@ -2,9 +2,17 @@ version: "3.8"
 services:
   api:
     container_name: api
-    
     build:
       context: ./Api
       dockerfile: Dockerfile
     ports:
-    - "8000:83"
+    - "5000:83"
+  
+  client:
+    container_name: client
+    build:
+    
+      context: ./Client
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
