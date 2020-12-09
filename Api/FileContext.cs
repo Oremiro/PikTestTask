@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Api.Entities;
 
@@ -6,7 +7,7 @@ namespace Api
 {
     public interface IFileContext
     {
-        
+        List<User> Users { get; set; }
     }
     public class FileContext: IFileContext
     {
@@ -30,8 +31,12 @@ namespace Api
             {
                 using (var streamReader = new StreamReader(fileStream))
                 {
-                    while (streamReader.ReadLine() != null)
+                    var line = streamReader.ReadLine();
+                    while (line != null)
                     {
+                        var user = parseTsvToObject(line);
+                        Users.Add(user);
+                        line = streamReader.ReadLine();
                         
                     }
                 }
@@ -42,14 +47,19 @@ namespace Api
         private User parseTsvToObject(string line)
         {
             var user = new User();
-            
+            var tokens = line.Split('\t');
+            // Important not to create here try-catch, because we need exception raised
+            user.Id = Convert.ToInt32(tokens[0]);
+            user.Username = tokens[1];
+            user.PasswordHash = tokens[2];
+            return user;
         }
         # endregion
         # region public
         public static string FindFilePath(string fileName = "users.tsv")
         {
-            var dir = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString());
-            var path = $"{dir}/assets/{fileName}";
+            var dir = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString());
+            var path = $"{dir}/Api/assets/{fileName}";
             return path;
         } 
         # endregion

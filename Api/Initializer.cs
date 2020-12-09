@@ -4,8 +4,6 @@
     {
         public static void AppInitialize()
         {
-            var filePath = FileContext.FindFilePath();
-            
         } 
     }
 }

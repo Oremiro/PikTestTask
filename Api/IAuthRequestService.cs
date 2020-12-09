@@ -14,12 +14,13 @@ namespace Api
     {
         [WebInvoke(Method = "POST", UriTemplate = "auth")]
         [OperationContract]
-        void Read();
+        void Read(AuthRequestModel model);
     }
 
     public class AuthRequestModel
     {
         public Guid Id { get; set; }
-        
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }
