@@ -8,6 +8,7 @@ using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using System.Web;
+using Api.DTO;
 using Api.EntityServices;
 using Api.Models;
 
@@ -40,7 +41,7 @@ namespace Api
             }
             var username = model.Username;
             var password = model.Password;
-            var user = _service.GetUserByUsernameAndPassword(username, password);
+            var user = _service.GetUserDTOByUsernameAndPassword(username, password);
             httpResponse.User = user;
             if (user == null)
             {
@@ -53,6 +54,11 @@ namespace Api
             httpResponse.StatusCode = HttpStatusCode.OK;
             Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.OK);
             return httpResponse;
+        }
+
+        public void Option()
+        { 
+            Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.OK);
         }
     }
 }

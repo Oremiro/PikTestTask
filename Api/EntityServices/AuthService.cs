@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Api.DTO;
 using Api.Entities;
 
 namespace Api.EntityServices
@@ -7,6 +8,7 @@ namespace Api.EntityServices
     {
         User GetUserById(int id);
         User GetUserByUsernameAndPassword(string username, string password);
+        UserSafeDTO GetUserDTOByUsernameAndPassword(string username, string password);
     }
     public class AuthService: IAuthService
     {
@@ -28,6 +30,21 @@ namespace Api.EntityServices
             var passwordHash = Helpers.AuthHelper.GetHashString(password);
             var user = _fileContext.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
             return user;
+        }
+
+        public UserSafeDTO GetUserDTOByUsernameAndPassword(string username, string password)
+        {
+            var user = this.GetUserByUsernameAndPassword(username, password);
+            if (user == null)
+            {
+                return null;
+            }
+            var userDTO = new UserSafeDTO
+            {
+                Id = user.Id,
+                Username = user.Username
+            };
+            return userDTO;
         }
     }
 }

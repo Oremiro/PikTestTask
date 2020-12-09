@@ -20,6 +20,13 @@ namespace Api
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "auth/post", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         HttpResponseAuthModel Post(AuthRequestModel model);
+
+        /// <summary>
+        /// Ugly trick to avoid cors errors
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(Method="OPTIONS", UriTemplate="auth/post")]
+        void Option();
     }
 
     public class AuthRequestModel
