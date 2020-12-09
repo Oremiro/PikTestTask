@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Web;
 using Api.EntityServices;
+using Api.Models;
 
 namespace Api
 {
@@ -22,12 +25,28 @@ namespace Api
 
         public string Get()
         {
-            return "Hello";
+            Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.OK);
+            return "Test, get method.";
         }
 
-        public string Post(AuthRequestModel model)
+        public HttpResponseAuthModel Post(AuthRequestModel model)
         {
-            throw new NotImplementedException();
+            var username = model.Username;
+            var password = model.Password;
+            if (username == null || password == null)
+            {
+                Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.NotAcceptable);       
+            }
+
+            var user = _service.GetUserByUsernameAndPassword(username, password);
+            if (user == null)
+            {
+                Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.NotFound);
+            }
+
+            var httpResponse = new HttpResponseAuthModel {User = user, StatusCode = HttpStatusCode.OK};
+            Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.OK);
+            return httpResponse;
         }
     }
 }

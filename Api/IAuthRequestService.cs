@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using Api.Models;
 
 namespace Api
 {
@@ -17,8 +18,8 @@ namespace Api
         string Get();
         
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "auth/post")]
-        string Post(AuthRequestModel model);
+        [WebInvoke(Method = "POST", UriTemplate = "auth/post", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        HttpResponseAuthModel Post(AuthRequestModel model);
     }
 
     public class AuthRequestModel

@@ -71,11 +71,13 @@
     <Compile Include="EntityServices\AuthService.cs" />
     <Compile Include="FileContext.cs" />
     <Compile Include="Helpers\AuthHelper.cs" />
+    <Compile Include="Helpers\HttpHelper.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="AuthRequestService.svc.cs">
       <DependentUpon>AuthRequestService.svc</DependentUpon>
     </Compile>
     <Compile Include="IAuthRequestService.cs" />
+    <Compile Include="Models\HttpResponseAuthModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

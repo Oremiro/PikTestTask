@@ -1,0 +1,1 @@
+﻿Invoke-WebRequest -UseBasicParsing http://localhost:8080/AuthRequestService.svc/auth/get -Method GET
