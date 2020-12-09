@@ -5,6 +5,15 @@ RUN Invoke-WebRequest -OutFile nodejs.zip -UseBasicParsing "https://nodejs.org/d
 
 FROM mcr.microsoft.com/windows/nanoserver:1803
 
-#WORKDIR C:/nodejs
-#COPY --from=installer C:/nodejs/ .
-#RUN SETX PATH C:\nodejs
+WORKDIR C:/nodejs
+COPY --from=installer C:/nodejs/ .
+RUN SETX PATH C:\nodejs
+RUN npm config set registry https://registry.npmjs.org/
+
+COPY package.json /Client/package.json
+
+WORKDIR /Client
+RUN npm install
+RUN npm install -g @angular/cli@latest
+COPY . /Client
+CMD cd /Client && ng serve --host 0.0.0.0
