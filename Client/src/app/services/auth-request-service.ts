@@ -30,8 +30,10 @@ export class AuthenticationService {
     }
     return this.http.post<any>(`${this.baseURL}/auth/post`, {"Username": username, "Password": password}, httpOptions)
       .pipe(map(user => {
-        console.log(user)
-        this.currentUserSubject.next(user);
+        if (user) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+        }
         return user;
       }));
   }
