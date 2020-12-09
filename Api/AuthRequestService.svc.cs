@@ -31,20 +31,26 @@ namespace Api
 
         public HttpResponseAuthModel Post(AuthRequestModel model)
         {
+            var httpResponse = new HttpResponseAuthModel();
+            if (model == null)
+            {
+                Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.NotAcceptable);
+                httpResponse.StatusCode = HttpStatusCode.NotAcceptable;
+                return httpResponse;
+            }
             var username = model.Username;
             var password = model.Password;
-            if (username == null || password == null)
-            {
-                Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.NotAcceptable);       
-            }
-
             var user = _service.GetUserByUsernameAndPassword(username, password);
+            httpResponse.User = user;
             if (user == null)
             {
                 Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.NotFound);
+                
+                httpResponse.StatusCode = HttpStatusCode.NotFound;
+                return httpResponse;
             }
 
-            var httpResponse = new HttpResponseAuthModel {User = user, StatusCode = HttpStatusCode.OK};
+            httpResponse.StatusCode = HttpStatusCode.OK;
             Helpers.HttpHelper.SetResponseHttpStatus(HttpStatusCode.OK);
             return httpResponse;
         }

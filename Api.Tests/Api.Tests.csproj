@@ -64,8 +64,9 @@
       </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="HttpRequests\AuthRequestServiceGet.ps1" />
-      <Content Include="HttpRequests\AuthRequestServicePost.ps1" />
+      <Content Include="HttpRequests\AuthRequestServiceGetOK.ps1" />
+      <Content Include="HttpRequests\AuthRequestServicePostBad.ps1" />
+      <Content Include="HttpRequests\AuthRequestServicePostOK.ps1" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
