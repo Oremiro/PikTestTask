@@ -6,7 +6,7 @@ services:
       context: ./Api
       dockerfile: Dockerfile
     ports:
-    - "5000:83"
+    - "5000:8080"
   
   client:
     container_name: client
