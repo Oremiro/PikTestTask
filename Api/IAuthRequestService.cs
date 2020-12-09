@@ -12,9 +12,13 @@ namespace Api
     [ServiceContract]
     public interface IAuthRequestService
     {
-        [WebInvoke(Method = "POST", UriTemplate = "auth")]
         [OperationContract]
-        void Read(AuthRequestModel model);
+        [WebInvoke(Method = "GET", UriTemplate = "auth/get")]
+        string Get();
+        
+        [OperationContract]
+        [WebInvoke(Method = "POST", UriTemplate = "auth/post")]
+        string Post(AuthRequestModel model);
     }
 
     public class AuthRequestModel

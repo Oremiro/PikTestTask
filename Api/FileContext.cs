@@ -58,8 +58,8 @@ namespace Api
         # region public
         public static string FindFilePath(string fileName = "users.tsv")
         {
-            var dir = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString());
-            var path = $"{dir}/Api/assets/{fileName}";
+            var dir = AppDomain.CurrentDomain.BaseDirectory;
+            var path = $"{dir}/assets/{fileName}";
             return path;
         } 
         # endregion

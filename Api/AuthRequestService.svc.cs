@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using Api.EntityServices;
 
 namespace Api
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class AuthRequestService : IAuthRequestService
     {
         private IAuthService _service { get; set; }
@@ -18,9 +19,15 @@ namespace Api
         {
             _service = new AuthService();
         }
-        public void Read(AuthRequestModel model)
+
+        public string Get()
         {
-            
+            return "Hello";
+        }
+
+        public string Post(AuthRequestModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }
