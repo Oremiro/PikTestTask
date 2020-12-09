@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using Api.EntityServices;
 
 namespace Api
 {
@@ -12,9 +13,14 @@ namespace Api
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class AuthRequestService : IAuthRequestService
     {
-        public void Read()
+        private IAuthService _service { get; set; }
+        public AuthRequestService()
         {
-            throw new NotImplementedException();
+            _service = new AuthService();
+        }
+        public void Read(AuthRequestModel model)
+        {
+            
         }
     }
 }

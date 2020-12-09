@@ -3,12 +3,7 @@ using System.Text;
 
 namespace Api.Helpers
 {
-    public interface IHashHelper
-    {
-        byte[] GetHash(string input);
-        string GetHashString(string input);
-    }
-    public class AuthHelper: IHashHelper
+    public class AuthHelper
     {
         # region public
         public static byte[] GetHash(string input)
