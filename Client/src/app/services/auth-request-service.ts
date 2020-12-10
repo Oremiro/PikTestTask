@@ -15,7 +15,7 @@ export class AuthenticationService {
     // @ts-ignore
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
-    this.baseURL = "http://localhost:8080/AuthRequestService.svc"
+    this.baseURL = "http://localhost:5000/AuthRequestService.svc"
   }
 
   public get currentUserValue(): User {
